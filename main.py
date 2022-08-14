@@ -1,4 +1,5 @@
 from math import *
+
 my_name = "Soe Paing"
 # print(len(my_name))
 # print(my_name[0]+my_name[1])
@@ -73,44 +74,67 @@ float_num = -3.5
 # Lists
 #               0           1        2         3
 #                                    -4       -3       -2      -1
-friends = ["အောင်အောင်", "ကျော်ကျော်", "စိုးစိုး", "မောင်မောင်", "သီဟ", "ဇေယျ"]
-print(friends)
-print(friends[2])
-print(friends[-3])
-print(friends[2:])
-print(friends[2:4])
-friends[2] = "မော်မော်"
-print(friends[2:])
-lucky_numbers = [2, 5, 9, 22, 23]
-friends.extend(lucky_numbers)
-print(friends)
-friends.append("မျိုးမျိုး")
-print(friends)
-friends.insert(2, "Ryan")
-print(friends)
-friends.remove("ကျော်ကျော်")
-print(friends)
-friends.pop()
-print(friends)
+# friends = ["အောင်အောင်", "ကျော်ကျော်", "စိုးစိုး", "မောင်မောင်", "သီဟ", "ဇေယျ"]
+# print(friends)
+# print(friends[2])
+# print(friends[-3])
+# print(friends[2:])
+# print(friends[2:4])
+# friends[2] = "မော်မော်"
+# print(friends[2:])
+# lucky_numbers = [2, 5, 9, 22, 23]
+# friends.extend(lucky_numbers)
+# print(friends)
+# friends.append("မျိုးမျိုး")
+# print(friends)
+# friends.insert(2, "Ryan")
+# print(friends)
+# friends.remove("ကျော်ကျော်")
+# print(friends)
+# friends.pop()
+# print(friends)
+#
+# print(friends.pop(2))
+# print(friends)
+# print(friends.index(22))
+# friends.insert(0, "သီဟ")
+# print(friends)
+# print(friends.count("သီဟ"))
+# # sort() can only work on same type, not str and int altogether
+# print(friends.pop(-1))
+# print(friends.pop(-1))
+# print(friends.pop(-1))
+# print(friends.pop(-1))
+# print(friends.pop(-1))
+# friends.sort()
+# print(friends)
+# lucky_numbers = [22, 5, 23, 9, 2]
+# # lucky_numbers.sort()
+# # lucky_numbers.reverse()
+# copy_lucky_numbers = lucky_numbers.copy()
+# print(copy_lucky_numbers)
+# lucky_numbers.clear()
+# print(lucky_numbers)
 
-print(friends.pop(2))
-print(friends)
-print(friends.index(22))
-friends.insert(0, "သီဟ")
-print(friends)
-print(friends.count("သီဟ"))
-# sort() can only work on same type, not str and int altogether
-print(friends.pop(-1))
-print(friends.pop(-1))
-print(friends.pop(-1))
-print(friends.pop(-1))
-print(friends.pop(-1))
-friends.sort()
-print(friends)
-lucky_numbers = [22, 5, 23, 9, 2]
-# lucky_numbers.sort()
-# lucky_numbers.reverse()
-copy_lucky_numbers = lucky_numbers.copy()
-print(copy_lucky_numbers)
-lucky_numbers.clear()
-print(lucky_numbers)
+# Tuples
+coordinates = (2, 5)
+print(coordinates)
+print(coordinates[1])
+
+
+# coordinates[1] = 4 // result in error as tuples are immutable
+
+# functions
+def say_hi(name, age):
+    print("Hello " + name + ", you are " + str(age))
+
+
+say_hi("soe", 38)
+say_hi("Myint", '95')
+
+
+def cube(number):
+    return number*number*number
+
+
+print(cube(6))
