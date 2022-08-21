@@ -117,24 +117,67 @@ float_num = -3.5
 # print(lucky_numbers)
 
 # Tuples
-coordinates = (2, 5)
-print(coordinates)
-print(coordinates[1])
+# coordinates = (2, 5)
+# print(coordinates)
+# print(coordinates[1])
 
 
 # coordinates[1] = 4 // result in error as tuples are immutable
 
 # functions
-def say_hi(name, age):
-    print("Hello " + name + ", you are " + str(age))
+# def say_hi(name, age):
+#     if name == "soe" and float(age) > 30:
+#         print("Hey Ko Soe Paing! I know you. I thought you are under 30. Its really " + str(age) + "?")
+#     else:
+#         print("Hello " + name + ", you are " + str(age))
+#
+#
+# name = input("What's your name? ")
+# age = input("How old are you? ")
+# say_hi(name, age)
+# say_hi("soe", 38)
+# say_hi("Myint", '95')
 
 
-say_hi("soe", 38)
-say_hi("Myint", '95')
+# def cube(number):
+#     return number*number*number
+#     # below doesn't work because return block
+#     print("hi")
+#
+#
+# result = cube(5)
+# print(result)
 
+# Dictionaries
+# Key: Value pairs
+# Keys are unique
+month_conversions = {
+    "Jan": "January",
+    "Feb": "February",
+    "Mar": "March",
+    "Apr": "April",
+    "May": "May",
+    "Jun": "Jun",
+    "Jul": "July",
+    "Aug": "August",
+    "Sep": "September",
+    "Oct": "October",
+    "Nov": "November",
+    "Dec": "December",
+    0: "Zero",
+    128: "One Hundred and Twenty Eight",
+    "Twenty": 20,
+    "Forty": 40
+}
 
-def cube(number):
-    return number*number*number
+print(month_conversions["Aug"])
+print(month_conversions.get(0))
+print(month_conversions.get("No_Key"))  # result in None
+print(month_conversions.get("Not_Key", "This is not a valid Key"))
+Twenty = month_conversions.get("Twenty", "This is not a valid key")
+print(Twenty)
+Forty = month_conversions.get("Forty", "This is not a valid key")
+print(Forty)
+Sum = Twenty + Forty
+print(Sum)
 
-
-print(cube(6))
