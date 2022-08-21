@@ -151,33 +151,65 @@ float_num = -3.5
 # Dictionaries
 # Key: Value pairs
 # Keys are unique
-month_conversions = {
-    "Jan": "January",
-    "Feb": "February",
-    "Mar": "March",
-    "Apr": "April",
-    "May": "May",
-    "Jun": "Jun",
-    "Jul": "July",
-    "Aug": "August",
-    "Sep": "September",
-    "Oct": "October",
-    "Nov": "November",
-    "Dec": "December",
-    0: "Zero",
-    128: "One Hundred and Twenty Eight",
-    "Twenty": 20,
-    "Forty": 40
+# month_conversions = {
+#     "Jan": "January",
+#     "Feb": "February",
+#     "Mar": "March",
+#     "Apr": "April",
+#     "May": "May",
+#     "Jun": "Jun",
+#     "Jul": "July",
+#     "Aug": "August",
+#     "Sep": "September",
+#     "Oct": "October",
+#     "Nov": "November",
+#     "Dec": "December",
+#     0: "Zero",
+#     128: "One Hundred and Twenty Eight",
+#     "Twenty": 20,
+#     "Forty": 40
+# }
+#
+# print(month_conversions["Aug"])
+# print(month_conversions.get(0))
+# print(month_conversions.get("No_Key"))  # result in None
+# print(month_conversions.get("Not_Key", "This is not a valid Key"))
+# Twenty = month_conversions.get("Twenty", "This is not a valid key")
+# print(Twenty)
+# Forty = month_conversions.get("Forty", "This is not a valid key")
+# print(Forty)
+# Sum = Twenty + Forty
+# print(Sum)
+
+# While Loops
+# i = 1
+# while i <= 10:
+#     print(i)
+#     i += 1
+#
+# print("Finished!")
+
+import random
+next_possibles = ["ကရတ", "မဆရ", "၂/၃၀၀", "၂/၁၀၀၀"]
+secret_word = random.choice(next_possibles)
+guess = ""
+i = 0
+times = 5
+translate_myanmar = {
+    1: "တစ်",
+    2: "နှစ်",
+    3: "သုံး",
+    4: "လေး",
+    5: "ငါး"
 }
 
-print(month_conversions["Aug"])
-print(month_conversions.get(0))
-print(month_conversions.get("No_Key"))  # result in None
-print(month_conversions.get("Not_Key", "This is not a valid Key"))
-Twenty = month_conversions.get("Twenty", "This is not a valid key")
-print(Twenty)
-Forty = month_conversions.get("Forty", "This is not a valid key")
-print(Forty)
-Sum = Twenty + Forty
-print(Sum)
+while guess != secret_word and i < times:
+    left = times - i
+    guess = input("ကစားခွင့် " + translate_myanmar.get(left) + " ကြိမ်ကျန်ရှိပါသည်။ စကားဝှက်မှာ: ")
+    i += 1
+if guess == secret_word and i <= times:
+    print("သင်နိုင်ပါသည်။")
+else:
+    print("သင်ရှုံးပါသည်။")
+print("သင်ရောက်ရှိမည့် တပ်မှာ " + secret_word + " ဖြစ်ပါသည်။")
 
