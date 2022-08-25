@@ -189,27 +189,70 @@ float_num = -3.5
 #
 # print("Finished!")
 
-import random
-next_possibles = ["ကရတ", "မဆရ", "၂/၃၀၀", "၂/၁၀၀၀"]
-secret_word = random.choice(next_possibles)
-guess = ""
-i = 0
-times = 5
-translate_myanmar = {
-    1: "တစ်",
-    2: "နှစ်",
-    3: "သုံး",
-    4: "လေး",
-    5: "ငါး"
-}
+# import random
+# next_possibles = ["ကရတ", "မဆရ", "၂/၃၀၀", "၂/၁၀၀၀"]
+# secret_word = random.choice(next_possibles)
+# guess = ""
+# i = 0
+# times = 5
+# translate_myanmar = {
+#     1: "တစ်",
+#     2: "နှစ်",
+#     3: "သုံး",
+#     4: "လေး",
+#     5: "ငါး"
+# }
+#
+# while guess != secret_word and i < times:
+#     left = times - i
+#     guess = input("ကစားခွင့် " + translate_myanmar.get(left) + " ကြိမ်ကျန်ရှိပါသည်။ စကားဝှက်မှာ: ")
+#     i += 1
+# if guess == secret_word and i <= times:
+#     print("သင်နိုင်ပါသည်။")
+# else:
+#     print("သင်ရှုံးပါသည်။")
+# print("သင်ရောက်ရှိမည့် တပ်မှာ " + secret_word + " ဖြစ်ပါသည်။")
 
-while guess != secret_word and i < times:
-    left = times - i
-    guess = input("ကစားခွင့် " + translate_myanmar.get(left) + " ကြိမ်ကျန်ရှိပါသည်။ စကားဝှက်မှာ: ")
-    i += 1
-if guess == secret_word and i <= times:
-    print("သင်နိုင်ပါသည်။")
+# def max_num(num1, num2, num3):
+#     nums = [num1, num2, num3]
+#     nums.sort()
+#     return nums[2]
+#
+#
+# result = max_num(55, 43, 222)
+# print(result)
+
+# def search(list, inputs):
+#     for i in range(len(list)):
+#         if list[i] == inputs:
+#             return True
+#     return False
+
+
+# if search(done, inputs):
+#     print("Platform is found")
+# else:
+#     print("Platform does not found")
+
+# while not search(done, inputs):
+#     inputs = input("Enter: ")
+# else:
+#     print("Found")
+
+nums = []
+done = ['d', 'done']
+inputs = ''
+print("Find maximum number")
+while inputs.lower() not in done:
+    inputs = input("Enter numbers one by one. When you done, enter (D/d/Done): ")
+    if inputs.isdigit():
+        inputs = int(inputs)
+        nums.append(inputs)
+        print("You entered: " + str(nums))
+        sorted_nums = sorted(nums)
+        print("From smallest to biggest: " + str(sorted_nums))
+        print("Biggest number you entered: " + str(sorted_nums[-1]))
+        inputs = str(inputs)
 else:
-    print("သင်ရှုံးပါသည်။")
-print("သင်ရောက်ရှိမည့် တပ်မှာ " + secret_word + " ဖြစ်ပါသည်။")
+    print("Done")
 
