@@ -1,3 +1,4 @@
+import random
 from math import *
 
 my_name = "Soe Paing"
@@ -239,20 +240,108 @@ float_num = -3.5
 # else:
 #     print("Found")
 
-nums = []
-done = ['d', 'done']
-inputs = ''
-print("Find maximum number")
-while inputs.lower() not in done:
-    inputs = input("Enter numbers one by one. When you done, enter (D/d/Done): ")
-    if inputs.isdigit():
-        inputs = int(inputs)
-        nums.append(inputs)
-        print("You entered: " + str(nums))
-        sorted_nums = sorted(nums)
-        print("From smallest to biggest: " + str(sorted_nums))
-        print("Biggest number you entered: " + str(sorted_nums[-1]))
-        inputs = str(inputs)
-else:
-    print("Done")
+# nums = []
+# done = ['d', 'done']
+# inputs = ''
+# print("Find maximum number")
+# while inputs.lower() not in done:
+#     inputs = input("Enter numbers one by one. When you done, enter (D/d/Done): ")
+#     if inputs.isdigit():
+#         inputs = int(inputs)
+#         nums.append(inputs)
+#         print("You entered: " + str(nums))
+#         sorted_nums = sorted(nums)
+#         print("From smallest to biggest: " + str(sorted_nums))
+#         print("Biggest number you entered: " + str(sorted_nums[-1]))
+#         inputs = str(inputs)
+# else:
+#     print("Done")
 
+cards = list(range(52))
+print(cards)
+shuffle_cards = cards.copy()
+random.shuffle(shuffle_cards)
+print(shuffle_cards)
+cards_dict = {
+    1: "BLACK|SPADE|2",
+    2: "BLACK|SPADE|3",
+    3: "BLACK|SPADE|4",
+    4: "BLACK|SPADE|5",
+    5: "BLACK|SPADE|6",
+    6: "BLACK|SPADE|7",
+    7: "BLACK|SPADE|8",
+    8: "BLACK|SPADE|9",
+    9: "BLACK|SPADE|10",
+    10: "BLACK|SPADE|J",
+    11: "BLACK|SPADE|Q",
+    12: "BLACK|SPADE|K",
+    13: "BLACK|SPADE|A",
+    14: "BLACK|CLUB|2",
+    15: "BLACK|CLUB|3",
+    16: "BLACK|CLUB|4",
+    17: "BLACK|CLUB|5",
+    18: "BLACK|CLUB|6",
+    19: "BLACK|CLUB|7",
+    20: "BLACK|CLUB|8",
+    21: "BLACK|CLUB|9",
+    22: "BLACK|CLUB|10",
+    23: "BLACK|CLUB|J",
+    24: "BLACK|CLUB|Q",
+    25: "BLACK|CLUB|K",
+    26: "BLACK|CLUB|A",
+    27: "RED|DIAMOND|2",
+    28: "RED|DIAMOND|3",
+    29: "RED|DIAMOND|4",
+    30: "RED|DIAMOND|5",
+    31: "RED|DIAMOND|6",
+    32: "RED|DIAMOND|7",
+    33: "RED|DIAMOND|8",
+    34: "RED|DIAMOND|9",
+    35: "RED|DIAMOND|10",
+    36: "RED|DIAMOND|J",
+    37: "RED|DIAMOND|Q",
+    38: "RED|DIAMOND|K",
+    39: "RED|DIAMOND|A",
+    40: "RED|HEART|2",
+    41: "RED|HEART|3",
+    42: "RED|HEART|4",
+    43: "RED|HEART|5",
+    44: "RED|HEART|6",
+    45: "RED|HEART|7",
+    46: "RED|HEART|8",
+    47: "RED|HEART|9",
+    48: "RED|HEART|10",
+    49: "RED|HEART|J",
+    50: "RED|HEART|Q",
+    51: "RED|HEART|K",
+    52: "RED|HEART|A"
+}
+# first = shuffle_cards[0]
+print("Player 1: " + cards_dict[shuffle_cards[0]] + " and " + cards_dict[shuffle_cards[2]])
+print("Player 2: " + cards_dict[shuffle_cards[1]] + " and " + cards_dict[shuffle_cards[3]])
+
+if input("Player 1 need a card? (\"y\" for yes others for no): ") == "y":
+    print("Player 1: " + cards_dict[shuffle_cards[0]] + " and " + cards_dict[shuffle_cards[2]] + " and " + cards_dict[
+        shuffle_cards[4]])
+    print("Player 2: " + cards_dict[shuffle_cards[1]] + " and " + cards_dict[shuffle_cards[3]])
+    if input("Player 2 need a card? (\"y\" for yes others for no): ") == "y":
+        print(
+            "Player 1: " + cards_dict[shuffle_cards[0]] + " and " + cards_dict[shuffle_cards[2]] + " and " + cards_dict[
+                shuffle_cards[4]])
+        print(
+            "Player 2: " + cards_dict[shuffle_cards[1]] + " and " + cards_dict[shuffle_cards[3]] + " and " + cards_dict[
+                shuffle_cards[5]])
+    else:
+        print(
+            "Player 1: " + cards_dict[shuffle_cards[0]] + " and " + cards_dict[shuffle_cards[2]] + " and " + cards_dict[
+                shuffle_cards[4]])
+        print("Player 2: " + cards_dict[shuffle_cards[1]] + " and " + cards_dict[shuffle_cards[3]])
+else:
+    if input("Player 2 need a card? (\"y\" for yes others for no): ") == "y":
+        print("Player 1: " + cards_dict[shuffle_cards[0]] + " and " + cards_dict[shuffle_cards[2]])
+        print(
+            "Player 2: " + cards_dict[shuffle_cards[1]] + " and " + cards_dict[shuffle_cards[3]] + " and " + cards_dict[
+                shuffle_cards[4]])
+    else:
+        print("Player 1: " + cards_dict[shuffle_cards[0]] + " and " + cards_dict[shuffle_cards[2]])
+        print("Player 2: " + cards_dict[shuffle_cards[1]] + " and " + cards_dict[shuffle_cards[3]])
