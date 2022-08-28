@@ -352,14 +352,15 @@ suits = {
     'DIAMOND': 2,
     'CLUB': 1
 }
+
 p1cards = 0
 p2cards = 0
-card1 = cards_dict[shuffle_cards[0]]
-card2 = cards_dict[shuffle_cards[1]]
-card3 = cards_dict[shuffle_cards[2]]
-card4 = cards_dict[shuffle_cards[3]]
-card5 = cards_dict[shuffle_cards[4]]
-card6 = cards_dict[shuffle_cards[5]]
+card1 = cards_dict[shuffle_cards[0]+1]
+card2 = cards_dict[shuffle_cards[1]+1]
+card3 = cards_dict[shuffle_cards[2]+1]
+card4 = cards_dict[shuffle_cards[3]+1]
+card5 = cards_dict[shuffle_cards[4]+1]
+card6 = cards_dict[shuffle_cards[5]+1]
 card1value = values[card1[-1]]
 card2value = values[card2[-1]]
 card3value = values[card3[-1]]
@@ -396,46 +397,19 @@ p2pauks = str(p2total)[-1]
 
 
 def two_two():
-    if card1value > card3value and card2value > card4value:
-        if card1value > card2value:
-            return print("Player 1 Win!!")
-        elif card1value < card2value:
-            return print("Player 2 Win!!")
-        else:
-            if suits[card1suit] > suits[card2suit]:
-                return print("Player 1 Win!!")
-            else:
-                return print("Player 2 Win!!")
-    elif card1value > card3value and card2value < card4value:
-        if card1value > card4value:
-            return print("Player 1 Win!!")
-        elif card1value < card4value:
-            return print("Player 2 Win!!")
-        else:
-            if suits[card1suit] > suits[card4suit]:
-                return print("Player 1 Win!!")
-            else:
-                return print("Player 2 Win!!")
-    elif card1value < card3value and card2value > card4value:
-        if card3value > card2value:
-            return print("Player 1 Win!!")
-        elif card3value < card2value:
-            return print("Player 2 Win!!")
-        else:
-            if suits[card3suit] > suits[card2suit]:
-                return print("Player 1 Win!!")
-            else:
-                return print("Player 2 Win!!")
-    elif card1value < card3value and card2value < card4value:
-        if card3value > card4value:
-            return print("Player 1 Win!!")
-        elif card3value < card4value:
-            return print("Player 2 Win!!")
-        else:
-            if suits[card3suit] > suits[card4suit]:
-                return print("Player 1 Win!!")
-            else:
-                return print("Player 2 Win!!")
+    if max(card1value + suits[card1suit], card3value + suits[card3suit]) > max(
+            card2value + suits[card2suit], card4value + suits[card4suit]):
+        return print("Player 1 Win!!")
+    else:
+        return print("Player 2 Win!!")
+
+
+def three_three():
+    if max(card1value + suits[card1suit], card3value + suits[card3suit], card5value + suits[card5suit]) > max(
+            card2value + suits[card2suit], card4value + suits[card4suit], card6value + suits[card6suit]):
+        return print("Player 1 Win!!")
+    else:
+        return print("Player 2 Win!!")
 
 
 p1do = False
@@ -469,28 +443,6 @@ else:
             p2cards = 3
             p1total = pauks[card1[-1]] + pauks[card3[-1]] + pauks[card5[-1]]
             p2total = pauks[card2[-1]] + pauks[card4[-1]] + pauks[card6[-1]]
-            # p1card1 = cards_dict[shuffle_cards[0]]
-            # p1card2 = cards_dict[shuffle_cards[2]]
-            # p1card3 = cards_dict[shuffle_cards[4]]
-            # p2card1 = cards_dict[shuffle_cards[1]]
-            # p2card2 = cards_dict[shuffle_cards[3]]
-            # p2card3 = cards_dict[shuffle_cards[5]]
-            # p1total = pauks[p1card1[-1]] + pauks[p1card2[-1]] + pauks[p1card3[-1]]
-            # p2total = pauks[p2card1[-1]] + pauks[p2card2[-1]] + pauks[p2card3[-1]]
-            # p1pauks = str(p1total)[-1]
-            # p2pauks = str(p2total)[-1]
-            # p1cards = 3
-            # p2cards = 3
-            # print("Player 1: " + p1pauks + " pauks")
-            # print("Player 2: " + p2pauks + " pauks")
-            # if int(p1pauks) > int(p2pauks):
-            #     print("Player 1 Win!!")
-            # elif int(p1pauks) < int(p2pauks):
-            #     print("Player 2 Win!!")
-            # else:
-            #     if p1cards > p2cards:
-            #         print("Player 2 Win!!")
-            #     elif
         else:
             print("Player 1: " + card1 + " and " + card3 + " and " + card5)
             print("Player 2: " + card2 + " and " + card4)
@@ -498,25 +450,6 @@ else:
             p2cards = 2
             p1total = pauks[card1[-1]] + pauks[card3[-1]] + pauks[card5[-1]]
             p2total = pauks[card2[-1]] + pauks[card4[-1]]
-            # p1card1 = cards_dict[shuffle_cards[0]]
-            # p1card2 = cards_dict[shuffle_cards[2]]
-            # p1card3 = cards_dict[shuffle_cards[4]]
-            # p2card1 = cards_dict[shuffle_cards[1]]
-            # p2card2 = cards_dict[shuffle_cards[3]]
-            # p1total = pauks[p1card1[-1]] + pauks[p1card2[-1]] + pauks[p1card3[-1]]
-            # p2total = pauks[p2card1[-1]] + pauks[p2card2[-1]]
-            # p1pauks = str(p1total)[-1]
-            # p2pauks = str(p2total)[-1]
-            # print("Player 1: " + p1pauks + " pauks")
-            # print("Player 2: " + p2pauks + " pauks")
-            # print("Player 1: " + p1pauks + " pauks")
-            # print("Player 2: " + p2pauks + " pauks")
-            # if int(p1pauks) > int(p2pauks):
-            #     print("Player 1 Win!!")
-            # elif int(p1pauks) < int(p2pauks):
-            #     print("Player 2 Win!!")
-            # else:
-            #     print("Someone must win.")
     else:
         if input("Player 2 need a card? (\"y\" for yes others for no): ") == "y":
             print("Player 1: " + card1 + " and " + card3)
@@ -525,48 +458,11 @@ else:
             p2cards = 3
             p1total = pauks[card1[-1]] + pauks[card3[-1]]
             p2total = pauks[card2[-1]] + pauks[card4[-1]] + pauks[card5[-1]]
-            # p1card1 = cards_dict[shuffle_cards[0]]
-            # p1card2 = cards_dict[shuffle_cards[2]]
-            # p2card1 = cards_dict[shuffle_cards[1]]
-            # p2card2 = cards_dict[shuffle_cards[3]]
-            # p2card3 = cards_dict[shuffle_cards[4]]
-            # p1total = pauks[p1card1[-1]] + pauks[p1card2[-1]]
-            # p2total = pauks[p2card1[-1]] + pauks[p2card2[-1]] + pauks[p2card3[-1]]
-            # p1pauks = str(p1total)[-1]
-            # p2pauks = str(p2total)[-1]
-            # print("Player 1: " + p1pauks + " pauks")
-            # print("Player 2: " + p2pauks + " pauks")
-            # print("Player 1: " + p1pauks + " pauks")
-            # print("Player 2: " + p2pauks + " pauks")
-            # if int(p1pauks) > int(p2pauks):
-            #     print("Player 1 Win!!")
-            # elif int(p1pauks) < int(p2pauks):
-            #     print("Player 2 Win!!")
-            # else:
-            #     print("Someone must win.")
         else:
             print("Player 1: " + card1 + " and " + card3)
             print("Player 2: " + card2 + " and " + card4)
             p1cards = 2
             p2cards = 2
-            # p1card1 = cards_dict[shuffle_cards[0]]
-            # p1card2 = cards_dict[shuffle_cards[2]]
-            # p2card1 = cards_dict[shuffle_cards[1]]
-            # p2card2 = cards_dict[shuffle_cards[3]]
-            # p1total = pauks[p1card1[-1]] + pauks[p1card2[-1]]
-            # p2total = pauks[p2card1[-1]] + pauks[p2card2[-1]]
-            # p1pauks = str(p1total)[-1]
-            # p2pauks = str(p2total)[-1]
-            # print("Player 1: " + p1pauks + " pauks")
-            # print("Player 2: " + p2pauks + " pauks")
-            # print("Player 1: " + p1pauks + " pauks")
-            # print("Player 2: " + p2pauks + " pauks")
-            # if int(p1pauks) > int(p2pauks):
-            #     print("Player 1 Win!!")
-            # elif int(p1pauks) < int(p2pauks):
-            #     print("Player 2 Win!!")
-            # else:
-            #     print("Someone must win.")
 if not p1do and not p2do:
     p1pauks = str(p1total)[-1]
     p2pauks = str(p2total)[-1]
@@ -576,7 +472,7 @@ if not p1do and not p2do:
         print("Player 2 Win!!")
     else:
         if p1cards == 3 and p2cards == 3:
-            print("3-3")
+            three_three()
         elif p1cards == 3 and p2cards == 2:
             print("Player 2 Win!!")
         elif p1cards == 2 and p2cards == 3:
