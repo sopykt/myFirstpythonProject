@@ -353,14 +353,33 @@ suits = {
     'CLUB': 1
 }
 
+player_choice = ''
+player1 = ''
+player2 = ''
+while player_choice != '1' and player_choice != '2':
+    player_choice = input("Player 1 or 2? (Enter '1' or '2'): ")
+if player_choice == '1':
+    player1 = 'user'
+    player2 = 'com'
+else:
+    player1 = 'com'
+    player2 = 'user'
+print("Player 1 is " + player1 + ".")
+print("Player 2 is " + player2 + ".")
 p1cards = 0
 p2cards = 0
-card1 = cards_dict[shuffle_cards[0]+1]
-card2 = cards_dict[shuffle_cards[1]+1]
-card3 = cards_dict[shuffle_cards[2]+1]
-card4 = cards_dict[shuffle_cards[3]+1]
-card5 = cards_dict[shuffle_cards[4]+1]
-card6 = cards_dict[shuffle_cards[5]+1]
+card1 = cards_dict[shuffle_cards[0] + 1]
+card2 = cards_dict[shuffle_cards[1] + 1]
+card3 = cards_dict[shuffle_cards[2] + 1]
+card4 = cards_dict[shuffle_cards[3] + 1]
+card5 = cards_dict[shuffle_cards[4] + 1]
+card6 = cards_dict[shuffle_cards[5] + 1]
+card1pauk = pauks[card1[-1]]
+card2pauk = pauks[card2[-1]]
+card3pauk = pauks[card3[-1]]
+card4pauk = pauks[card4[-1]]
+card5pauk = pauks[card5[-1]]
+card6pauk = pauks[card6[-1]]
 card1value = values[card1[-1]]
 card2value = values[card2[-1]]
 card3value = values[card3[-1]]
@@ -386,12 +405,20 @@ card3suit = find_suit(card3)
 card4suit = find_suit(card4)
 card5suit = find_suit(card5)
 card6suit = find_suit(card6)
+card1suitvalue = suits[card1suit]
+card2suitvalue = suits[card2suit]
+card3suitvalue = suits[card3suit]
+card4suitvalue = suits[card4suit]
+card5suitvalue = suits[card5suit]
+card6suitvalue = suits[card6suit]
 
-print("Player 1: " + card1 + " and " + card3)
-print("Player 2: " + card2 + " and " + card4)
+if player1 == 'user':
+    print("Player 1: " + card1 + " and " + card3)
+else:
+    print("Player 2: " + card2 + " and " + card4)
 
-p1total = pauks[card1[-1]] + pauks[card3[-1]]
-p2total = pauks[card2[-1]] + pauks[card4[-1]]
+p1total = card1pauk + card3pauk
+p2total = card2pauk + card4pauk
 p1pauks = str(p1total)[-1]
 p2pauks = str(p2total)[-1]
 p1win = False
@@ -408,20 +435,44 @@ def ask_input(player):
     return input(player + " need a card? (\"y\" for yes others for no): ")
 
 
-def two_two():
-    if max(card1value + suits[card1suit], card3value + suits[card3suit]) > max(
-            card2value + suits[card2suit], card4value + suits[card4suit]):
-        return 'p1win'
-    elif max(card1value + suits[card1suit], card3value + suits[card3suit]) < max(
-            card2value + suits[card2suit], card4value + suits[card4suit]):
-        return 'p2win'
+def com_think(choice):
+    suit_same = False
+    if choice == '1':
+        c_pauk = card2pauk + card4pauk
+        if card2suitvalue == card4suitvalue:
+            suit_same = True
     else:
-        print('umm')
+        c_pauk = card1pauk + card3pauk
+        if card1suitvalue == card3suitvalue:
+            suit_same = True
+    if int(str(c_pauk)[-1]) < 5:
+        if not suit_same or (suit_same and (int(str(c_pauk)[-1]) < 2)):
+            return 'draw'
+            # print("Player 2: " + card2 + " and " + card4 + " and " + card6)
+            # p1cards = 3
+            # p2cards = 3
+            # p1total = card1pauk + card3pauk + card5pauk
+            # p2total = card2pauk + card4pauk + card6pauk
+        else:
+            return 'skip'
+            # print("Player 2: " + card2 + " and " + card4)
+            # p1cards = 3
+            # p2cards = 2
+            # p1total = card1pauk + card3pauk + card5pauk
+            # p2total = card2pauk + card4pauk
+
+
+def two_two():
+    if max(card1value + card1suitvalue, card3value + card3suitvalue) > max(
+            card2value + card2suitvalue, card4value + card4suitvalue):
+        return 'p1win'
+    else:
+        return 'p2win'
 
 
 def three_three():
-    if max(card1value + suits[card1suit], card3value + suits[card3suit], card5value + suits[card5suit]) > max(
-            card2value + suits[card2suit], card4value + suits[card4suit], card6value + suits[card6suit]):
+    if max(card1value + card1suitvalue, card3value + card3suitvalue, card5value + card5suitvalue) > max(
+            card2value + card2suitvalue, card4value + card4suitvalue, card6value + card6suitvalue):
         return 'p1win'
     else:
         return 'p2win'
@@ -430,28 +481,48 @@ def three_three():
 p1do = False
 p2do = False
 if int(p1pauks) > 7 and int(p2pauks) < 8:
+    if player1 == 'user':
+        print("Player 2: " + card2 + " and " + card4)
+    else:
+        print("Player 1: " + card1 + " and " + card3)
     p1cards = 2
     p2cards = 2
     p1do = True
     p1win = True
 elif int(p2pauks) > 7 and int(p1pauks) < 8:
+    if player1 == 'user':
+        print("Player 2: " + card2 + " and " + card4)
+    else:
+        print("Player 1: " + card1 + " and " + card3)
     p1cards = 2
     p2cards = 2
     p2do = True
     p2win = True
 elif int(p1pauks) > int(p2pauks) > 7:
+    if player1 == 'user':
+        print("Player 2: " + card2 + " and " + card4)
+    else:
+        print("Player 1: " + card1 + " and " + card3)
     p1cards = 2
     p2cards = 2
     p1do = True
     p2do = True
     p1win = True
 elif int(p2pauks) > int(p1pauks) > 7:
+    if player1 == 'user':
+        print("Player 2: " + card2 + " and " + card4)
+    else:
+        print("Player 1: " + card1 + " and " + card3)
     p1cards = 2
     p2cards = 2
     p1do = True
     p2do = True
     p2win = True
 elif int(p1pauks) == int(p2pauks) > 7:
+    if player1 == 'user':
+        print("Player 2: " + card2 + " and " + card4)
+    else:
+        print("Player 1: " + card1 + " and " + card3)
     p1cards = 2
     p2cards = 2
     p1do = True
@@ -462,36 +533,36 @@ elif int(p1pauks) == int(p2pauks) > 7:
     else:
         p2win = True
 else:
-    if ask_input('Player 1') == "y":
-        print("Player 1: " + card1 + " and " + card3 + " and " + card5)
-        print("Player 2: " + card2 + " and " + card4)
-        if ask_input('Player 2') == "y":
+    if player1 == 'user':
+        if ask_input('Player 1') == "y":
             print("Player 1: " + card1 + " and " + card3 + " and " + card5)
-            print("Player 2: " + card2 + " and " + card4 + " and " + card6)
-            p1cards = 3
-            p2cards = 3
-            p1total = pauks[card1[-1]] + pauks[card3[-1]] + pauks[card5[-1]]
-            p2total = pauks[card2[-1]] + pauks[card4[-1]] + pauks[card6[-1]]
-        else:
-            print("Player 1: " + card1 + " and " + card3 + " and " + card5)
-            print("Player 2: " + card2 + " and " + card4)
-            p1cards = 3
-            p2cards = 2
-            p1total = pauks[card1[-1]] + pauks[card3[-1]] + pauks[card5[-1]]
-            p2total = pauks[card2[-1]] + pauks[card4[-1]]
-    else:
-        if ask_input('Player 2') == "y":
-            print("Player 1: " + card1 + " and " + card3)
-            print("Player 2: " + card2 + " and " + card4 + " and " + card5)
-            p1cards = 2
-            p2cards = 3
-            p1total = pauks[card1[-1]] + pauks[card3[-1]]
-            p2total = pauks[card2[-1]] + pauks[card4[-1]] + pauks[card5[-1]]
+            if com_think(player_choice) == 'draw':
+                print("Player 2: " + card2 + " and " + card4 + " and " + card6)
+                p1cards = 3
+                p2cards = 3
+                p1total = card1pauk + card3pauk + card5pauk
+                p2total = card2pauk + card4pauk + card6pauk
+            else:
+                print("Player 2: " + card2 + " and " + card4)
+                p1cards = 3
+                p2cards = 2
+                p1total = card1pauk + card3pauk + card5pauk
+                p2total = card2pauk + card4pauk
         else:
             print("Player 1: " + card1 + " and " + card3)
-            print("Player 2: " + card2 + " and " + card4)
-            p1cards = 2
-            p2cards = 2
+            if com_think(player_choice) == 'draw':
+                print("Player 2: " + card2 + " and " + card4 + " and " + card5)
+                p1cards = 2
+                p2cards = 3
+                p1total = card1pauk + card3pauk
+                p2total = card2pauk + card4pauk + card5pauk
+            else:
+                print("Player 2: " + card2 + " and " + card4)
+                p1cards = 2
+                p2cards = 2
+                p1total = card1pauk + card3pauk
+                p2total = card2pauk + card4pauk
+
 if not p1do and not p2do:
     p1pauks = str(p1total)[-1]
     p2pauks = str(p2total)[-1]
@@ -527,18 +598,18 @@ else:
     print('umm')
 
 if p1win and p1cards == 2:
-    if suits[card1suit] == suits[card3suit]:
+    if card1suitvalue == card3suitvalue:
         p1_2x = True
 elif p2win and p2cards == 2:
-    if suits[card2suit] == suits[card4suit]:
+    if card2suitvalue == card4suitvalue:
         p2_2x = True
 elif p1win and p1cards == 3:
-    if suits[card1suit] == suits[card3suit] == suits[card5suit]:
+    if card1suitvalue == card3suitvalue == card5suitvalue:
         p1_3x = True
     elif card1value == card3value == card5value:
         p1_5x = True
 elif p2win and p2cards == 3:
-    if (suits[card2suit] == suits[card4suit] == suits[card5suit]) or (suits[card2suit] == suits[card4suit] == suits[card6suit]):
+    if (card2suitvalue == card4suitvalue == card5suitvalue) or (card2suitvalue == card4suitvalue == card6suitvalue):
         p2_3x = True
     elif (card2value == card4value == card5value) or (card2value == card4value == card6value):
         p2_5x = True
