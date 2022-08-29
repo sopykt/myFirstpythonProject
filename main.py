@@ -429,6 +429,7 @@ p2_2x = False
 p2_3x = False
 p1_5x = False
 p2_5x = False
+za = ''
 
 
 def ask_input(player):
@@ -562,6 +563,35 @@ else:
                 p2cards = 2
                 p1total = card1pauk + card3pauk
                 p2total = card2pauk + card4pauk
+    else:
+        if com_think(player_choice) == 'draw':
+            if ask_input('Player 2') == "y":
+                print("Player 1: " + card1 + " and " + card3 + " and " + card5)
+                print("Player 2: " + card2 + " and " + card4 + " and " + card6)
+                p1cards = 3
+                p2cards = 3
+                p1total = card1pauk + card3pauk + card5pauk
+                p2total = card2pauk + card4pauk + card6pauk
+            else:
+                print("Player 1: " + card1 + " and " + card3 + " and " + card5)
+                print("Player 2: " + card2 + " and " + card4)
+                p1cards = 3
+                p2cards = 2
+                p1total = card1pauk + card3pauk + card5pauk
+                p2total = card2pauk + card4pauk
+        else:
+            if ask_input('Player 2') == "y":
+                print("Player 1: " + card1 + " and " + card3)
+                print("Player 2: " + card2 + " and " + card4 + " and " + card5)
+                p1cards = 2
+                p2cards = 3
+                p1total = card1pauk + card3pauk
+                p2total = card2pauk + card4pauk + card5pauk
+            else:
+                print("Player 1: " + card1 + " and " + card3)
+                print("Player 2: " + card2 + " and " + card4)
+                p1cards = 2
+                p2cards = 2
 
 if not p1do and not p2do:
     p1pauks = str(p1total)[-1]
@@ -600,19 +630,25 @@ else:
 if p1win and p1cards == 2:
     if card1suitvalue == card3suitvalue:
         p1_2x = True
+        za = '2x'
 elif p2win and p2cards == 2:
     if card2suitvalue == card4suitvalue:
         p2_2x = True
+        za = '2x'
 elif p1win and p1cards == 3:
     if card1suitvalue == card3suitvalue == card5suitvalue:
         p1_3x = True
+        za = '3x'
     elif card1value == card3value == card5value:
         p1_5x = True
+        za = '5x'
 elif p2win and p2cards == 3:
     if (card2suitvalue == card4suitvalue == card5suitvalue) or (card2suitvalue == card4suitvalue == card6suitvalue):
         p2_3x = True
+        za = '3x'
     elif (card2value == card4value == card5value) or (card2value == card4value == card6value):
         p2_5x = True
+        za = '5x'
 
 if p1_2x:
     print("Player 1 get 2x!!")
@@ -626,3 +662,23 @@ elif p1_5x:
     print("Player 1 get 5x!!")
 elif p2_5x:
     print("Player 2 get 5x!!")
+
+if player_choice == '1':
+    if p1win and len(za) == 2:
+        print("You Win with " + za + "!!")
+    elif p1win and len(za) == 0:
+        print("You Win!!")
+    elif p2win and len(za) == 2:
+        print("You Loose with " + za + ".")
+    elif p2win and len(za) == 0:
+        print("You Loose.")
+else:
+    if p1win and len(za) == 2:
+        print("You Loose with " + za + ".")
+    elif p1win and len(za) == 0:
+        print("You Loose.")
+    elif p2win and len(za) == 2:
+        print("You Win with " + za + "!!")
+    elif p2win and len(za) == 0:
+        print("You Win!!")
+
