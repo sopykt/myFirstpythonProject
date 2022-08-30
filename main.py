@@ -412,11 +412,6 @@ card4suitvalue = suits[card4suit]
 card5suitvalue = suits[card5suit]
 card6suitvalue = suits[card6suit]
 
-if player1 == 'user':
-    print("Player 1: " + card1 + " and " + card3)
-else:
-    print("Player 2: " + card2 + " and " + card4)
-
 p1total = card1pauk + card3pauk
 p2total = card2pauk + card4pauk
 p1pauks = str(p1total)[-1]
@@ -430,6 +425,19 @@ p2_3x = False
 p1_5x = False
 p2_5x = False
 za = ''
+
+
+def print_cards(p):
+    if p == "p1":
+        print("Player 1: " + card1 + " and " + card3)
+    elif p == "p2":
+        print("Player 2: " + card2 + " and " + card4)
+    elif p == "p1 135":
+        print("Player 1: " + card1 + " and " + card3 + " and " + card5)
+    elif p == "p2 246":
+        print("Player 2: " + card2 + " and " + card4 + " and " + card6)
+    else:
+        print("Player 2: " + card2 + " and " + card4 + " and " + card5)
 
 
 def ask_input(player):
@@ -449,18 +457,8 @@ def com_think(choice):
     if int(str(c_pauk)[-1]) < 5:
         if not suit_same or (suit_same and (int(str(c_pauk)[-1]) < 2)):
             return 'draw'
-            # print("Player 2: " + card2 + " and " + card4 + " and " + card6)
-            # p1cards = 3
-            # p2cards = 3
-            # p1total = card1pauk + card3pauk + card5pauk
-            # p2total = card2pauk + card4pauk + card6pauk
         else:
             return 'skip'
-            # print("Player 2: " + card2 + " and " + card4)
-            # p1cards = 3
-            # p2cards = 2
-            # p1total = card1pauk + card3pauk + card5pauk
-            # p2total = card2pauk + card4pauk
 
 
 def two_two():
@@ -482,48 +480,38 @@ def three_three():
 p1do = False
 p2do = False
 if int(p1pauks) > 7 and int(p2pauks) < 8:
-    if player1 == 'user':
-        print("Player 2: " + card2 + " and " + card4)
-    else:
-        print("Player 1: " + card1 + " and " + card3)
+    print_cards("p1")
+    print_cards("p2")
     p1cards = 2
     p2cards = 2
     p1do = True
     p1win = True
 elif int(p2pauks) > 7 and int(p1pauks) < 8:
-    if player1 == 'user':
-        print("Player 2: " + card2 + " and " + card4)
-    else:
-        print("Player 1: " + card1 + " and " + card3)
+    print_cards("p1")
+    print_cards("p2")
     p1cards = 2
     p2cards = 2
     p2do = True
     p2win = True
 elif int(p1pauks) > int(p2pauks) > 7:
-    if player1 == 'user':
-        print("Player 2: " + card2 + " and " + card4)
-    else:
-        print("Player 1: " + card1 + " and " + card3)
+    print_cards("p1")
+    print_cards("p2")
     p1cards = 2
     p2cards = 2
     p1do = True
     p2do = True
     p1win = True
 elif int(p2pauks) > int(p1pauks) > 7:
-    if player1 == 'user':
-        print("Player 2: " + card2 + " and " + card4)
-    else:
-        print("Player 1: " + card1 + " and " + card3)
+    print_cards("p1")
+    print_cards("p2")
     p1cards = 2
     p2cards = 2
     p1do = True
     p2do = True
     p2win = True
 elif int(p1pauks) == int(p2pauks) > 7:
-    if player1 == 'user':
-        print("Player 2: " + card2 + " and " + card4)
-    else:
-        print("Player 1: " + card1 + " and " + card3)
+    print_cards("p1")
+    print_cards("p2")
     p1cards = 2
     p2cards = 2
     p1do = True
@@ -535,65 +523,50 @@ elif int(p1pauks) == int(p2pauks) > 7:
         p2win = True
 else:
     if player1 == 'user':
+        print_cards("p1")
         if ask_input('Player 1') == "y":
-            print("Player 1: " + card1 + " and " + card3 + " and " + card5)
+            p1cards = 3
             if com_think(player_choice) == 'draw':
-                print("Player 2: " + card2 + " and " + card4 + " and " + card6)
-                p1cards = 3
                 p2cards = 3
-                p1total = card1pauk + card3pauk + card5pauk
-                p2total = card2pauk + card4pauk + card6pauk
             else:
-                print("Player 2: " + card2 + " and " + card4)
-                p1cards = 3
                 p2cards = 2
-                p1total = card1pauk + card3pauk + card5pauk
-                p2total = card2pauk + card4pauk
         else:
-            print("Player 1: " + card1 + " and " + card3)
+            p1cards = 2
             if com_think(player_choice) == 'draw':
-                print("Player 2: " + card2 + " and " + card4 + " and " + card5)
-                p1cards = 2
                 p2cards = 3
-                p1total = card1pauk + card3pauk
-                p2total = card2pauk + card4pauk + card5pauk
             else:
-                print("Player 2: " + card2 + " and " + card4)
-                p1cards = 2
                 p2cards = 2
-                p1total = card1pauk + card3pauk
-                p2total = card2pauk + card4pauk
     else:
+        print_cards("p2")
         if com_think(player_choice) == 'draw':
+            p1cards = 3
             if ask_input('Player 2') == "y":
-                print("Player 1: " + card1 + " and " + card3 + " and " + card5)
-                print("Player 2: " + card2 + " and " + card4 + " and " + card6)
-                p1cards = 3
                 p2cards = 3
-                p1total = card1pauk + card3pauk + card5pauk
-                p2total = card2pauk + card4pauk + card6pauk
             else:
-                print("Player 1: " + card1 + " and " + card3 + " and " + card5)
-                print("Player 2: " + card2 + " and " + card4)
-                p1cards = 3
                 p2cards = 2
-                p1total = card1pauk + card3pauk + card5pauk
-                p2total = card2pauk + card4pauk
         else:
+            p1cards = 2
             if ask_input('Player 2') == "y":
-                print("Player 1: " + card1 + " and " + card3)
-                print("Player 2: " + card2 + " and " + card4 + " and " + card5)
-                p1cards = 2
                 p2cards = 3
-                p1total = card1pauk + card3pauk
-                p2total = card2pauk + card4pauk + card5pauk
             else:
-                print("Player 1: " + card1 + " and " + card3)
-                print("Player 2: " + card2 + " and " + card4)
-                p1cards = 2
                 p2cards = 2
 
 if not p1do and not p2do:
+    if p1cards == 3:
+        print_cards("p1 135")
+        p1total = card1pauk + card3pauk + card5pauk
+        if p2cards == 3:
+            print_cards("p2 246")
+            p2total = card2pauk + card4pauk + card6pauk
+        else:
+            print_cards("p2")
+    else:
+        print_cards("p1")
+        if p2cards == 3:
+            print_cards("p2 245")
+            p2total = card2pauk + card4pauk + card5pauk
+        else:
+            print_cards("p2")
     p1pauks = str(p1total)[-1]
     p2pauks = str(p2total)[-1]
     if int(p1pauks) > int(p2pauks):
