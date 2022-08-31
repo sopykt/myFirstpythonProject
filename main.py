@@ -1,6 +1,6 @@
 import random
+from slowprint.slowprint import *
 from math import *
-
 my_name = "Soe Paing"
 # print(len(my_name))
 # print(my_name[0]+my_name[1])
@@ -429,15 +429,15 @@ za = ''
 
 def print_cards(p):
     if p == "p1":
-        print("Player 1: " + card1 + " and " + card3)
+        slowprint("Player 1: " + card1 + " and " + card3, 3)
     elif p == "p2":
-        print("Player 2: " + card2 + " and " + card4)
+        slowprint("Player 2: " + card2 + " and " + card4, 3)
     elif p == "p1 135":
-        print("Player 1: " + card1 + " and " + card3 + " and " + card5)
+        slowprint("Player 1: " + card1 + " and " + card3 + " and " + card5, 3)
     elif p == "p2 246":
-        print("Player 2: " + card2 + " and " + card4 + " and " + card6)
+        slowprint("Player 2: " + card2 + " and " + card4 + " and " + card6, 3)
     else:
-        print("Player 2: " + card2 + " and " + card4 + " and " + card5)
+        slowprint("Player 2: " + card2 + " and " + card4 + " and " + card5, 3)
 
 
 def ask_input(player):
@@ -540,12 +540,14 @@ else:
         print_cards("p2")
         if com_think(player_choice) == 'draw':
             p1cards = 3
+            print("Player 1 draw a third card!")
             if ask_input('Player 2') == "y":
                 p2cards = 3
             else:
                 p2cards = 2
         else:
             p1cards = 2
+            print("Player 1 did not want to draw another card!")
             if ask_input('Player 2') == "y":
                 p2cards = 3
             else:
